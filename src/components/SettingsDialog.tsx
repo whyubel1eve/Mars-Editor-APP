@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowSquareOut, CheckCircle, Copy, Eye, EyeSlash, QrCode, X } from '@phosphor-icons/react';
+import { ArrowSquareOut, CheckCircle, Copy, Eye, EyeSlash, X } from '@phosphor-icons/react';
 import {
   DEV_PROFILE_URL,
   WechatError,
@@ -259,10 +259,6 @@ export default function SettingsDialog({ open, onClose, onOpenUpdate }: Props) {
             <div className="about-copy">
               <strong>VinsEditor</strong> 是一款面向公众号写作的 Markdown 编辑器：左侧管理本地草稿，中间专注写作，右侧实时预览公众号排版，支持复制富文本或推送到公众号草稿箱。
             </div>
-            <div className="about-subtitle">Markdown 语法速览</div>
-            <div className="markdown-cheatsheet">
-              <code># 标题</code><code>**加粗**</code><code>*斜体*</code><code>[链接](URL)</code><code>- 列表</code><code>```代码块```</code>
-            </div>
             <div className="about-subtitle">常用功能</div>
             <ul className="about-list">
               <li>把 `.md` 草稿放进工作区，编辑器会自动读取并保存。</li>
@@ -271,10 +267,10 @@ export default function SettingsDialog({ open, onClose, onOpenUpdate }: Props) {
               <li>图片可直接拖入编辑器；设置中配置公众号凭据并测试连接。</li>
             </ul>
             <div className="about-subtitle">支持作者</div>
-            <p className="form-note">如果 VinsEditor 对你有帮助，欢迎扫码支持作者。请提供真实的微信与支付宝收款码图片后放入下方位置。</p>
+            <p className="form-note">如果 VinsEditor 对你有帮助，欢迎扫码支持作者。</p>
             <div className="donation-grid">
-              <div className="donation-card"><QrCode size={48} weight="duotone" /><span>微信收款码</span><small>待配置</small></div>
-              <div className="donation-card"><QrCode size={48} weight="duotone" /><span>支付宝收款码</span><small>待配置</small></div>
+              <div className="donation-card"><img src="./wechat-reward-qr.png" alt="微信收款码" /><span>微信收款码</span></div>
+              <div className="donation-card"><img src="./alipay-reward-qr.png" alt="支付宝收款码" /><span>支付宝收款码</span></div>
             </div>
             <details className="changelog">
               <summary>更新日志</summary>

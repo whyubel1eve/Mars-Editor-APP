@@ -248,6 +248,64 @@
   font-weight: 600;
 }
 
+.donation-card img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  border-radius: var(--r-xs);
+  background: #fff;
+}
+
+.markdown-guide {
+  width: min(680px, 100%);
+}
+
+.markdown-guide-body {
+  overflow-y: auto;
+}
+
+.markdown-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.markdown-example,
+.markdown-guide-tips {
+  padding: 10px;
+  border: 1px solid var(--line-hair);
+  border-radius: var(--r-md);
+  background: var(--surface-3);
+}
+
+.markdown-example h3,
+.markdown-guide-tips h3 {
+  margin: 0 0 7px;
+  color: var(--text-1);
+  font-size: 11px;
+}
+
+.markdown-example pre {
+  margin: 0;
+  white-space: pre-wrap;
+  color: var(--accent-hi);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1.65;
+}
+
+.markdown-guide-tips {
+  margin-top: 10px;
+}
+
+.markdown-guide-tips ul {
+  margin: 0;
+  padding-left: 17px;
+  color: var(--text-2);
+  font-size: 11.5px;
+  line-height: 1.75;
+}
+
 .donation-card small {
   font-size: 10px;
   color: var(--text-3);

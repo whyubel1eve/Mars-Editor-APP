@@ -9,6 +9,7 @@ import PublishDialog from './components/PublishDialog';
 import ImportUrlDialog from './components/ImportUrlDialog';
 import SettingsDialog from './components/SettingsDialog';
 import UpdateDialog from './components/UpdateDialog';
+import MarkdownGuideDialog from './components/MarkdownGuideDialog';
 import ConflictBar from './components/ConflictBar';
 import AgentPanel from './components/AgentPanel';
 import VaultGate from './components/VaultGate';
@@ -154,6 +155,7 @@ function Workspace({ vault }: { vault: VaultApi }) {
    *  rather than a section of the push dialog */
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
+  const [markdownGuideOpen, setMarkdownGuideOpen] = useState(false);
 
   /** The toolbar pill is the whole announcement — see store/updater.ts */
   const update = useUpdate();
@@ -699,6 +701,7 @@ function Workspace({ vault }: { vault: VaultApi }) {
         onPublish={() => setPublishOpen(true)}
         onOpenDraftBox={() => setDraftBoxOpen(true)}
         onOpenSettings={() => setSettingsOpen(true)}
+        onOpenMarkdownGuide={() => setMarkdownGuideOpen(true)}
         hasUpdate={hasUpdate}
         onOpenUpdate={() => setUpdateOpen(true)}
         agentOpen={agentOpen}
@@ -853,6 +856,7 @@ function Workspace({ vault }: { vault: VaultApi }) {
           setUpdateOpen(true);
         }}
       />
+      <MarkdownGuideDialog open={markdownGuideOpen} onClose={() => setMarkdownGuideOpen(false)} />
       <UpdateDialog open={updateOpen} onClose={() => setUpdateOpen(false)} />
     </div>
   );

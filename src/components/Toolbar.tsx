@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { ArrowCircleUp, ClipboardText, GearSix, ImageSquare, PaperPlaneTilt, Sparkle, Stack, TextAa } from '@phosphor-icons/react';
+import { ArrowCircleUp, BookOpenText, ClipboardText, GearSix, ImageSquare, PaperPlaneTilt, Sparkle, Stack, TextAa } from '@phosphor-icons/react';
 import { chord } from '../platform';
 
 interface Props {
@@ -30,6 +30,7 @@ interface Props {
   onOpenDraftBox: () => void;
   /** Open settings (公众号凭据 lives there) */
   onOpenSettings: () => void;
+  onOpenMarkdownGuide: () => void;
   /**
    * A newer release is waiting.
    *
@@ -82,6 +83,7 @@ export default function Toolbar({
   onPublish,
   onOpenDraftBox,
   onOpenSettings,
+  onOpenMarkdownGuide,
   hasUpdate,
   onOpenUpdate,
   agentOpen,
@@ -180,6 +182,10 @@ export default function Toolbar({
             button here would compete with the four that are. */}
         <button className="btn icon" onClick={onOpenSettings} title="设置（公众号凭据）" aria-label="设置">
           <GearSix size={15} weight="bold" />
+        </button>
+        <button className="btn" onClick={onOpenMarkdownGuide} title="Markdown 语法说明">
+          <BookOpenText size={15} weight="bold" />
+          MD 语法
         </button>
 
         {/* Local agent: runs the claude / codex already on this machine.
