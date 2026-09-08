@@ -11,6 +11,7 @@ import {
 import { patchWechatConfig, useWechatConfig } from '../store/wechatConfig';
 import { getReaderKey, setReaderKey } from '../reader';
 import { RELEASES_URL, appVersion, checkForUpdate, dismissVerdict, useUpdate } from '../store/updater';
+import changelog from '../../CHANGELOG.md?raw';
 
 /** Where a free key comes from, for the one link in the 网页导入 section */
 const READER_HOME = 'https://jina.ai/reader/';
@@ -275,6 +276,10 @@ export default function SettingsDialog({ open, onClose, onOpenUpdate }: Props) {
               <div className="donation-card"><QrCode size={48} weight="duotone" /><span>微信收款码</span><small>待配置</small></div>
               <div className="donation-card"><QrCode size={48} weight="duotone" /><span>支付宝收款码</span><small>待配置</small></div>
             </div>
+            <details className="changelog">
+              <summary>更新日志</summary>
+              <pre>{changelog}</pre>
+            </details>
             <div className="update-line">
               <span className="app-version">VinsEditor {version ? `v${version}` : ''}</span>
               <button
