@@ -44,6 +44,18 @@ const SAVE_DELAY = 600;
 /** Coalescing window for outside-change events. One save often notifies several times */
 const WATCH_DEBOUNCE = 200;
 
+/** Built-in samples from earlier releases. Only these exact first headings
+ * are migrated; a user's own document is never replaced just because it has
+ * a familiar name. */
+const LEGACY_SAMPLE_HEADINGS = [
+  '# 2026 年设计趋势观察',
+  '# 周末做一顿番茄鸡蛋面',
+];
+
+function isLegacySample(draft: Draft) {
+  return draft.name === '未命名草稿' && LEGACY_SAMPLE_HEADINGS.some((heading) => draft.content.startsWith(heading));
+}
+
 /** A draft edited on both sides. diskContent is kept so the user can compare
  *  it or take it wholesale */
 export interface Conflict {
@@ -87,6 +99,18 @@ export function useVault() {
       if (!data.drafts.length) {
         data.drafts = [await api.createDraft(target, '', '未命名草稿', SAMPLE_MARKDOWN)];
         data.tree = await api.readTree(target);
+      } else {
+        // Existing workspaces retain their files across upgrades. Refresh only
+        // the sample shipped by an older version so the new example is visible
+        // without asking users to delete or recreate their workspace.
+        for (const draft of data.drafts) {
+          if (!isLegacySample(draft)) continue;
+          const result = await api.writeDraft(target, draft.id, SAMPLE_MARKDOWN, draft.updatedAt);
+          if (result.status === 'ok') {
+            draft.content = SAMPLE_MARKDOWN;
+            draft.updatedAt = result.updatedAt;
+          }
+        }
       }
       await api.rememberVault(target);
       dirtyRef.current.clear();
