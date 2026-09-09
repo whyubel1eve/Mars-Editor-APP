@@ -62,6 +62,12 @@
   color: var(--accent-hi);
 }
 
+.agent-missing h3 {
+  margin: 0 0 6px;
+  color: var(--text-1);
+  font-size: 12px;
+}
+
 .agent-missing .agent-missing-help {
   margin-top: -3px;
   color: var(--text-2);
@@ -70,6 +76,17 @@
 .agent-missing code {
   font-family: var(--mono);
   font-size: 11.5px;
+}
+
+.agent-install-links {
+  display: flex;
+  gap: 12px;
+}
+
+.agent-install-links a {
+  color: var(--accent-hi);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .agent-bin-row {

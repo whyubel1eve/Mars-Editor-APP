@@ -339,6 +339,7 @@ export default function AgentPanel({ open, vaultDir, activeId, onClose, onBefore
   const info = infos.find((i) => i.kind === kind);
   /** Do not rush to say "not found" while the probe is still running */
   const missing = infos.length > 0 && !info?.bin;
+  const noAgentInstalled = infos.length > 0 && infos.every((i) => !i.bin);
 
   const current = sessions.find((s) => s.key === activeKey[kind]) ?? null;
   const lines = current?.lines ?? [];
@@ -750,13 +751,25 @@ export default function AgentPanel({ open, vaultDir, activeId, onClose, onBefore
 
       {missing && !historyOpen && (
         <div className="agent-missing">
-          <p>
-            AI 使用你本机已经登录的 <code>{kind}</code>，Vins Editor 不需要再填 API Key。
-            请先按官方文档安装并登录，再回到这里；如果已安装但没被找到，运行 <code>which {kind}</code>，把路径填这儿：
-          </p>
-          <p className="agent-missing-help">
-            任选一个即可：Claude Code 适合日常写作，Codex 也可以直接处理当前草稿。点击顶部 Agent 后，选择模型，使用下方快捷动作或输入请求，按 Enter 发送。
-          </p>
+          {noAgentInstalled ? (
+            <>
+              <h3>AI 助手还未启用</h3>
+              <p>不用 AI 也可以正常写作：直接编辑 Markdown、查看公众号预览、复制正文，或配置微信后推送草稿。</p>
+              <p className="agent-missing-help">如果想让 AI 帮你润色、写标题或检查文章，任选一个安装并登录即可：</p>
+              <p className="agent-install-links">
+                <a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank" rel="noopener noreferrer">安装 Claude Code</a>
+                <a href="https://developers.openai.com/codex/cli" target="_blank" rel="noopener noreferrer">安装 Codex CLI</a>
+              </p>
+            </>
+          ) : (
+            <>
+              <p>
+                AI 使用你本机已经登录的 <code>{kind}</code>，VinsEditor 不需要再填 API Key。
+                请先按官方文档安装并登录，再回到这里；如果已安装但没被找到，运行 <code>which {kind}</code>，把路径填这儿：
+              </p>
+              <p className="agent-missing-help">任选一个即可：Claude Code 适合日常写作，Codex 也可以直接处理当前草稿。</p>
+            </>
+          )}
           <div className="agent-bin-row">
             <input
               type="text"
