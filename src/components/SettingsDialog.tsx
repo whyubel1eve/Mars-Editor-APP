@@ -266,12 +266,6 @@ export default function SettingsDialog({ open, onClose, onOpenUpdate }: Props) {
               <li>使用「复制正文」粘贴到公众号，或用「推草稿」直接发布到微信草稿箱。</li>
               <li>图片可直接拖入编辑器；设置中配置公众号凭据并测试连接。</li>
             </ul>
-            <div className="about-subtitle">支持作者</div>
-            <p className="form-note">如果 VinsEditor 对你有帮助，欢迎扫码支持作者。</p>
-            <div className="donation-grid">
-              <div className="donation-card"><img src="./wechat-reward-qr.png" alt="微信收款码" /><span>微信收款码</span></div>
-              <div className="donation-card"><img src="./alipay-reward-qr.png" alt="支付宝收款码" /><span>支付宝收款码</span></div>
-            </div>
             <details className="changelog">
               <summary>更新日志</summary>
               <pre>{changelog}</pre>
